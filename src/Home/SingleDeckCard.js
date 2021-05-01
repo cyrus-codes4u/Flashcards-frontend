@@ -2,7 +2,9 @@ import React, {useEffect, useState} from 'react'
 import { Link, useRouteMatch, useHistory } from "react-router-dom"
 import {deleteDeck, listCards} from '../utils/api/index'
 
-function DeckCard({deck}){
+// TODO: Implement delete deck feature and styling
+
+function SingleDeckCard({deck}){
     const {id, name, description} = deck
     const {url} = useRouteMatch()
     const history = useHistory()
@@ -15,7 +17,7 @@ function DeckCard({deck}){
         return () => abortController.abort()
     }, [id])
 
-    const deleteHandler = async () => {
+    const deleteDeckHandler = async () => {
         const reply = window.confirm("Are you sure you want to delete this deck?")
         if (reply){
             await deleteDeck(id)
@@ -37,7 +39,7 @@ function DeckCard({deck}){
                 <button className="btn">
                     <Link to={`${url}decks/${id}/study`}>Study</Link>
                 </button>
-                <button className="btn btn-danger" onClick={deleteHandler}>
+                <button className="btn btn-danger" onClick={deleteDeckHandler}>
                     Trash Can
                 </button>
             </div>
@@ -45,4 +47,4 @@ function DeckCard({deck}){
     )
 }
 
-export default DeckCard
+export default SingleDeckCard

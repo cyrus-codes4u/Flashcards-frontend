@@ -1,8 +1,9 @@
 import React from "react";
 import Header from "./Header";
 import NotFound from "./NotFound";
-import DeckList from "../Home/DeckList"
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
+import Home from "../Home/Home"
+import Decks from "../Decks/Decks"
+import {Route, Switch} from "react-router-dom"
 
 function Layout() {
   
@@ -15,10 +16,10 @@ function Layout() {
             {/* TODO: Implement the screen starting here */}
               <Switch>
                 <Route exact={true} path ="/">{/*the home screen*/}
-                  <DeckList/>
+                  <Home/> {/*TODO: Implement delete deck feature and styling*/}
                 </Route> 
                 <Route exact={true} path ="/decks"> {/*the decks screen*/}
-                    This will be the decks route
+                    <Decks/>
                 </Route>
                 <Route> 
                   <NotFound />
@@ -28,7 +29,7 @@ function Layout() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 export default Layout;

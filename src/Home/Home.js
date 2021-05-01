@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import {useRouteMatch} from 'react-router-dom'
 import {listDecks} from "../utils/api/index"
-import DeckCard from "./DeckCard"
+import SingleDeckCard from "./SingleDeckCard"
 
-function DeckList(){
+function Home(){
     const {url} = useRouteMatch()
     const [decks, setDecks] = useState([])
     
@@ -21,7 +21,7 @@ function DeckList(){
         }
     }, [])
 
-    const list = decks.map((deck) => <DeckCard key={deck.id} deck={deck}/>)
+    const list = decks.map((deck) => <SingleDeckCard key={deck.id} deck={deck}/>)
     
     return(
         <ul className="list-group">{list}</ul>
@@ -30,4 +30,4 @@ function DeckList(){
 
 
 
-export default DeckList
+export default Home
