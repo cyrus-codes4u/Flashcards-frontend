@@ -6,19 +6,18 @@ import Decks from "../Decks/Decks"
 import {Route, Switch} from "react-router-dom"
 
 function Layout() {
-  
+
   return (
     <div className="app-routes">
       <Header />
       <div className="container">
         <div className="row">
           <div className="column m-auto">
-            {/* TODO: Implement the screen starting here */}
               <Switch>
                 <Route exact={true} path ="/">{/*the home screen*/}
-                  <Home/> {/*TODO: Implement delete deck feature and styling*/}
+                  <Home/> {/*TODO: Implement styling*/}
                 </Route> 
-                <Route exact={true} path ="/decks"> {/*the decks screen*/}
+                <Route path ="/decks"> {/*the decks screen*/}
                     <Decks/>
                 </Route>
                 <Route> 

@@ -1,22 +1,30 @@
 import React, {useEffect, useState} from 'react'
-import { Link, useRouteMatch, useHistory } from "react-router-dom"
+import { Link, useHistory, useRouteMatch } from "react-router-dom"
 import {deleteDeck, listCards} from '../utils/api/index'
 
-// TODO: Implement delete deck feature and styling
+// TODO: Implement styling
 
 function SingleDeckCard({deck}){
     const {id, name, description} = deck
-    const {url} = useRouteMatch()
     const history = useHistory()
     const [cards, setCards] = useState([])
+    const {url} = useRouteMatch()
 
+    // Fetches cards associated with current deck
     useEffect(() => {
         const abortController = new AbortController()
-        listCards(id, abortController.signal)
-            .then(setCards)
-        return () => abortController.abort()
+        async function getCards(id) {
+            const cardsFromAPI = await listCards(id, abortController.signal)
+            setCards(cardsFromAPI)
+        }
+        getCards(id)
+        return () => {
+            setCards([])
+            abortController.abort()
+        }
     }, [id])
 
+    // handles button for deleting a deck
     const deleteDeckHandler = async () => {
         const reply = window.confirm("Are you sure you want to delete this deck?")
         if (reply){
@@ -34,7 +42,7 @@ function SingleDeckCard({deck}){
             <p className="card-body">{description}</p>
             <div className ="d-flex">
                 <button className="btn" >
-                    <Link to={`${url}decks/${id}`}>View</Link>
+                    <Link to={`${url}decks/${id}`}>View  {`${url}decks/${id}`}</Link>
                 </button>
                 <button className="btn">
                     <Link to={`${url}decks/${id}/study`}>Study</Link>

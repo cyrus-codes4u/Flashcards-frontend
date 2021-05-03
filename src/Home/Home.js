@@ -1,13 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import {useRouteMatch} from 'react-router-dom'
-import {listDecks} from "../utils/api/index"
+import { listDecks } from "../utils/api/index"
 import SingleDeckCard from "./SingleDeckCard"
 
 function Home(){
-    const {url} = useRouteMatch()
     const [decks, setDecks] = useState([])
-    
-    
+
     useEffect(() =>{
         const abortController = new AbortController();
         async function getDecks() {

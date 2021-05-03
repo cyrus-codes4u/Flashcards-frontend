@@ -14,3 +14,5 @@ function Cards () {
         </Switch>
     )
 }
+
+export default Cards
