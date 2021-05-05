@@ -1,6 +1,7 @@
 import React from 'react'
-import { Link, useHistory} from 'react-router-dom'
-import {createDeck} from '../utils/api/index'
+import { useHistory } from 'react-router-dom'
+import { createDeck } from '../utils/api/index'
+import BreadcrumbNav from "../Common/BreadcrumbNav"
 
 function CreateDeack ({deck, setDeck}){
     const history = useHistory()
@@ -18,17 +19,11 @@ function CreateDeack ({deck, setDeck}){
         history.push("/")
     }
 
+    const navigation = [{name: "Home", route: "/"}, {name: "Create Deck"}]
+
     return (
         <React.Fragment>
-            {/* breadcrumb navigation */}
-            <nav aria-label="breadcrumb">
-                <ol className="breadcrumb">
-                    <li className="breadcrumb-item">
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li className="breadcrumb-item active" aria-current="page">Create Deck</li>
-                </ol>
-            </nav>
+            <BreadcrumbNav namesRoutes={navigation} />
             {/* Create Deck form */}
             <div>
                 <h2>Create Deck</h2>
@@ -67,7 +62,6 @@ function CreateDeack ({deck, setDeck}){
                     </button>
                 </form>
             </div>
-            
         </React.Fragment>
     )
 }
