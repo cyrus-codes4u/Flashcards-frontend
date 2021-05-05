@@ -18,7 +18,7 @@ function Layout() {
                   <Home/> {/*TODO: Implement styling*/}
                 </Route> 
                 <Route path ="/decks"> {/*the decks screen*/}
-                    <Decks/>
+                  <Decks/>
                 </Route>
                 <Route> 
                   <NotFound />

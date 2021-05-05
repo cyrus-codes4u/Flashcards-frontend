@@ -1,19 +1,20 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Route, Switch, useRouteMatch} from "react-router-dom"
 import SingleDeck from "./SingleDeck/SingleDeck"
 import CreateDeck from "./CreateDeck"
 
 function Decks () {
     const { url } = useRouteMatch()
+    const [deck, setDeck] = useState({})
+
     return (
         
         <Switch>
-            {url}
             <Route path={`${url}/new`} >
-                {/* <CreateDeck /> */}
+                <CreateDeck deck={deck} setDeck={setDeck} />
             </Route>
             <Route path={`${url}/:deckId`}>
-                <SingleDeck />
+                <SingleDeck deck={deck} setDeck={setDeck}/>
             </Route>
         </Switch>
     )

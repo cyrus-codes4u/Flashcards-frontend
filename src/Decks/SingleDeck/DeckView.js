@@ -3,6 +3,9 @@ import {useRouteMatch, useHistory, Link} from "react-router-dom"
 import {deleteDeck} from '../../utils/api/index'
 import CardList from "./CardList"
 
+// TODO: STYLING IMPLEMENT CARD DELETE SO IT WORKS
+
+
 function DeckView({deck, cards}){
     const {id, name, description} = deck
     const {url} = useRouteMatch() //exact route is /deck/:deckId

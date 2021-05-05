@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { listDecks } from "../utils/api/index"
 import SingleDeckCard from "./SingleDeckCard"
+import {Link} from 'react-router-dom'
 
 function Home(){
     const [decks, setDecks] = useState([])
@@ -21,7 +22,12 @@ function Home(){
     const list = decks.map((deck) => <SingleDeckCard key={deck.id} deck={deck}/>)
     
     return(
-        <ul className="list-group">{list}</ul>
+        <div>
+            <button className="btn btn-secondary" type="button">
+                <Link to="/decks/new"> Create Deck</Link>
+            </button>
+            <ul className="list-group">{list}</ul>
+        </div>
     )
 }
 

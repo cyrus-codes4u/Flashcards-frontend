@@ -3,9 +3,10 @@ import {Route, Switch, useRouteMatch, useParams} from "react-router-dom"
 import DeckView from "./DeckView"
 import {readDeck, listCards} from "../../utils/api/index"
 
-function SingleDeck () {
+// TODO: IMPLEMENT OTHER ROUTES
+
+function SingleDeck ({deck, setDeck}) {
     const { url } = useRouteMatch() //urls for following routes begin with /decks/:deckId/
-    const [deck, setDeck] = useState({})
     const [cards, setCards] = useState([])
     const {deckId} = useParams()
 

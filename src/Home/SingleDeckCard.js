@@ -42,7 +42,7 @@ function SingleDeckCard({deck}){
             <p className="card-body">{description}</p>
             <div className ="d-flex">
                 <button className="btn" >
-                    <Link to={`${url}decks/${id}`}>View  {`${url}decks/${id}`}</Link>
+                    <Link to={`${url}decks/${id}`}>View </Link>
                 </button>
                 <button className="btn">
                     <Link to={`${url}decks/${id}/study`}>Study</Link>
