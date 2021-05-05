@@ -25,9 +25,15 @@ function CardList({cards, url}) {
                     <div>{back}</div>
                 </div>
                 <div>
-                    <button><Link to={`${url}/${id}/edit`}>Edit Card</Link> </button>
-                    <button >Trash Icon</button>
-                    {/* onClick={deleteCardHandler(id)} */}
+                    <button className="btn btn-secondary">
+                        <Link className="text-white" to={`${url}/${id}/edit`}>
+                            <span className="oi oi-pencil"/>
+                            Edit
+                        </Link>
+                    </button>
+                    <button className="btn btn-danger" onClick={()=> deleteCardHandler(id)}>
+                        <span className="oi oi-trash text-white"/>
+                    </button>
                 </div>
             </li>
         )
