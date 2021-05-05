@@ -33,17 +33,26 @@ function DeckView({deck, cards}){
                 </div>
                 <p className="card-body">{description}</p>
                 <div className ="d-flex">
-                    <button className="btn" >
-                        <Link to={`${url}/edit`}>Edit</Link>
+                    <button className="btn btn-secondary" >
+                        <Link className="text-white" to={`${url}/edit`}>
+                            <span className="oi oi-pencil"/>
+                            Edit
+                        </Link>
                     </button>
-                    <button className="btn">
-                        <Link to={`${url}/study`}>Study</Link>
+                    <button className="btn btn-primary">
+                        <Link className="text-white" to={`${url}/study`}>
+                            <span className="oi oi-book"/>
+                            Study
+                        </Link>
                     </button>
-                    <button className="btn">
-                        <Link to={`${url}/cards/new`}>Add</Link>
+                    <button className="btn btn-primary">
+                        <Link className="text-white" to={`${url}/cards/new`}>
+                            <span className="oi oi-plus"/>
+                            Add
+                        </Link>
                     </button>
                     <button className="btn btn-danger" onClick={deleteDeckHandler}>
-                        Trash Can
+                        <span className="text-white oi oi-trash"/>
                     </button>
                 </div>
             </div>

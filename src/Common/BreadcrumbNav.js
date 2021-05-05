@@ -32,8 +32,6 @@ function BreadcrumbNav({namesRoutes}){
         )
     })
 
-
-
     return(
         <nav aria-label="breadcrumb">
             <ol className="breadcrumb">

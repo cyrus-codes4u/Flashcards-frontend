@@ -41,14 +41,20 @@ function SingleDeckCard({deck}){
             </div>
             <p className="card-body">{description}</p>
             <div className ="d-flex">
-                <button className="btn" >
-                    <Link to={`${url}decks/${id}`}>View </Link>
+                <button className="btn btn-secondary" >
+                    <Link className="text-white" to={`${url}decks/${id}`}>
+                        <span className="oi oi-eye"/>
+                        View 
+                    </Link>
                 </button>
-                <button className="btn">
-                    <Link to={`${url}decks/${id}/study`}>Study</Link>
+                <button className="btn btn-primary">
+                    <Link className="text-white" to={`${url}decks/${id}/study`}>
+                        <span className="oi oi-book"/>
+                        Study
+                    </Link>
                 </button>
                 <button className="btn btn-danger" onClick={deleteDeckHandler}>
-                    Trash Can
+                    <span className="oi oi-trash text-white"/>
                 </button>
             </div>
         </li>
