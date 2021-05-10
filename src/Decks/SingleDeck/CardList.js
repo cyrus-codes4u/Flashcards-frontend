@@ -2,7 +2,7 @@ import React from "react"
 import { Link, useHistory } from "react-router-dom"
 import {deleteCard} from "../../utils/api/index"
 
-
+// function CardList({cards, url})
 function CardList({cards, url}) {
     const history = useHistory()
 
@@ -16,8 +16,9 @@ function CardList({cards, url}) {
         }
     }
     
-    const frontAndBackCards = cards.map ((card) => {
+    const frontAndBackCards = cards.map((card) => {
         const {front, back, id} = card
+        
         return (
             <li key={id} className="list-group-item">
                 <div className="d-flex justify-content-between">

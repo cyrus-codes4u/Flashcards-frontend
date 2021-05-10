@@ -5,19 +5,17 @@ import CardList from "./CardList"
 import BreadcrumbNav from "../../Common/BreadcrumbNav"
 // TODO: STYLING IMPLEMENT CARD DELETE SO IT WORKS
 
-
 function DeckView({deck, cards}){
-    const {id, name, description} = deck
     const {url} = useRouteMatch() //exact route is /deck/:deckId
     const history = useHistory()
 
-    const navigation = [{name: "Home", route: "/"}, {name: name}]
+    const navigation = [{name: "Home", route: "/"}, {name: deck.name}]
 
     // handles click of delete deck button
     const deleteDeckHandler = async () => {
         const reply = window.confirm("Are you sure you want to delete this deck?")
         if (reply){
-            await deleteDeck(id)
+            await deleteDeck(deck.id)
             //after deletion, forces to render Home page with useEffect drawing updated deck list
             history.push("/")
         }
@@ -29,9 +27,9 @@ function DeckView({deck, cards}){
             {/* Deck card -- with edit, study, add, delete, buttons */}
             <div className="card">
                 <div className="d-flex">
-                    <h2 className="card-title">{name}</h2>
+                    <h2 className="card-title">{deck.name}</h2>
                 </div>
-                <p className="card-body">{description}</p>
+                <p className="card-body">{deck.description}</p>
                 <div className ="d-flex">
                     <button className="btn btn-secondary" >
                         <Link className="text-white" to={`${url}/edit`}>

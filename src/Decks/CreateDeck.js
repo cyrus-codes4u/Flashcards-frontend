@@ -14,7 +14,7 @@ function CreateDeack ({deck, setDeck}){
         setDeck({})
         history.push(`/decks/${id}`)
     }
-    const handleCancel = (event) => {
+    const handleCancel = () => {
         setDeck({})
         history.push("/")
     }
