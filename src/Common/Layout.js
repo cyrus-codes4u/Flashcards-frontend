@@ -2,8 +2,8 @@ import React from "react";
 import Header from "./Header";
 import NotFound from "./NotFound";
 import Home from "../Home/Home"
-import Decks from "../Decks/Decks"
 import {Route, Switch} from "react-router-dom"
+import DecksRouter from "../Decks/DecksRouter";
 
 function Layout() {
 
@@ -18,7 +18,7 @@ function Layout() {
                   <Home/> {/*TODO: Implement styling*/}
                 </Route> 
                 <Route path ="/decks"> {/*the decks screen*/}
-                  <Decks/>
+                  <DecksRouter/>
                 </Route>
                 <Route> 
                   <NotFound />

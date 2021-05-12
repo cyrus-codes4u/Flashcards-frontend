@@ -1,67 +1,65 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { createDeck } from '../utils/api/index'
 import BreadcrumbNav from "../Common/BreadcrumbNav"
 
-function CreateDeack ({deck, setDeck}){
+function CreateDeack (){
+    const initialFormState = {name: "", description: ""}
+    const [deck, setDeck] = useState({...initialFormState})
+    const navigation = [{name: "Home", route: "/"}, {name: "Create Deck"}]
     const history = useHistory()
-    
-    const handleNameUpdate = (event) => setDeck(...deck, event.target.value)
-    const handleDescriptionUpdate = (event) => setDeck(...deck, event.target.value)
+
+    //Event Handlers
+    const handleUpdate = ({target}) => setDeck({...deck, [target.name]: target.value})
     const handleSubmit = async (event) => {
         event.preventDefault()
-        const {id} = createDeck(deck)
-        setDeck({})
+        const {id} = await createDeck(deck)
+        setDeck({...initialFormState})
         history.push(`/decks/${id}`)
     }
     const handleCancel = () => {
-        setDeck({})
+        setDeck({...initialFormState})
         history.push("/")
     }
-
-    const navigation = [{name: "Home", route: "/"}, {name: "Create Deck"}]
 
     return (
         <React.Fragment>
             <BreadcrumbNav namesRoutes={navigation} />
-            {/* Create Deck form */}
-            <div>
-                <h2>Create Deck</h2>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="deck-name">
-                        Name
-                        <input
-                            type="text"
-                            id="deck-name"
-                            name= "deck-name"
-                            onChange={handleNameUpdate}
-                            value={deck.name}
-                        />
-                    </label>
-                    <label htmlFor="deck-description">
-                        Description
-                        <textarea
-                            name = "deck-description"
-                            id = "deck-description"
-                            onChange={handleDescriptionUpdate}
-                            value={deck.description}
-                        />
-                    </label>
-                    <button 
-                        className = "btn btn-primary" 
-                        type="submit"
-                    >
-                            Submit
-                    </button>
-                    <button 
-                        type="button"
-                        className="btn btn-secondary"
-                        onClick={handleCancel}
-                    >
-                        Cancel
-                    </button>
-                </form>
-            </div>
+            <h2>Create Deck</h2>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="name">
+                    Name
+                    <input
+                        type="text"
+                        id="name"
+                        name= "name"
+                        onChange={handleUpdate}
+                        value={deck.name}
+                    />
+                </label>
+                <label htmlFor="description">
+                    Description
+                    <textarea
+                        name = "description"
+                        id = "description"
+                        onChange={handleUpdate}
+                        value={deck.description}
+                    />
+                </label>
+                <button 
+                    className = "btn btn-primary" 
+                    type="submit"
+                >
+                    Submit
+                </button>
+                <button 
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={handleCancel}
+                >
+                    Cancel
+                </button>
+            </form>
         </React.Fragment>
     )
 }

@@ -7,20 +7,21 @@ function Home(){
     const [decks, setDecks] = useState([])
 
     useEffect(() =>{
+        setDecks([])
         const abortController = new AbortController();
         async function getDecks() {
             try{
-                const decks = await listDecks(abortController.signal)
-                setDecks(decks)
+                const decksFromAPI = await listDecks(abortController.signal)
+                setDecks(decksFromAPI)
+                console.log(decksFromAPI)
             }catch(err){
-                console.log(err)
+                if(err.name !== "AbortError"){
+                    throw err;
+                }
             }
         }
         getDecks()
-        return () => {
-            setDecks([])
-            abortController.abort()
-        }
+        return () => abortController.abort()
     }, [])
 
     const list = decks.map((deck) => <SingleDeckCard key={deck.id} deck={deck}/>)
@@ -28,7 +29,7 @@ function Home(){
     return(
         <div>
             <button className="btn btn-secondary" type="button">
-                <Link to="/decks/new"> Create Deck</Link>
+                <Link to="/decks/new" className="text-white"> Create Deck</Link>
             </button>
             <ul className="list-group">{list}</ul>
         </div>
