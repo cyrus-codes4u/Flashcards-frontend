@@ -1,15 +1,12 @@
 import React from "react"
-import BreadcrumbNav from '../../Common/BreadcrumbNav'
 import StudyCycle from "./StudyCycle"
 
-function Study({url, deck}) {
-    const navigation = [{name: "Home", route: "/"}, {name: deck.name, route: url }, {name: "Study"}]
-
+function Study({deck, cards}) {
+    console.log("Study",cards)
     return (
         <React.Fragment>
-            <BreadcrumbNav namesRoutes={navigation} />
             <h4 className = "display-4">Study: {deck.name}</h4>
-            <StudyCycle deck={deck}/>
+            <StudyCycle deck={deck} cards={cards}/>
         </React.Fragment>
     )
 }

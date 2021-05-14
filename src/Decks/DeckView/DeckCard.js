@@ -3,6 +3,7 @@ import {Link, useRouteMatch} from "react-router-dom"
 
 function DeckCard({deck, deleteDeckHandle}){
     const {url} = useRouteMatch()
+    
     return(
         <div className="card">
             <div className="d-flex">
@@ -28,7 +29,7 @@ function DeckCard({deck, deleteDeckHandle}){
                         Add
                     </Link>
                 </button>
-                <button className="btn btn-danger" onClick={deleteDeckHandle}>
+                <button className="btn btn-danger" onClick={() => deleteDeckHandle(deck.id)}>
                     <span className="text-white oi oi-trash"/>
                 </button>
             </div>

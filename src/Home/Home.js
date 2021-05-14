@@ -13,7 +13,6 @@ function Home(){
             try{
                 const decksFromAPI = await listDecks(abortController.signal)
                 setDecks(decksFromAPI)
-                console.log(decksFromAPI)
             }catch(err){
                 if(err.name !== "AbortError"){
                     throw err;

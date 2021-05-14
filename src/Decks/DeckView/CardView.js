@@ -13,7 +13,7 @@ function CardView ({card, deleteCard}) {
             </div>
             <div>
                 <button className="btn btn-secondary">
-                    <Link className="text-white" to={`${url}/${id}/edit`}>
+                    <Link className="text-white" to={`${url}/cards/${id}/edit`}>
                         <span className="oi oi-pencil"/>
                         Edit
                     </Link>

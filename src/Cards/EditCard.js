@@ -4,8 +4,7 @@ import CardForm from './CardForm'
 import { readCard, updateCard} from "../utils/api/index"
 
 function EditCard({deck}){
-    const initialFormState = {front: "", back: ""}
-    const [card, setCard] = useState({...initialFormState})
+    const [card, setCard] = useState({})
     const { cardId } = useParams()
     const history = useHistory()
     

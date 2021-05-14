@@ -14,7 +14,7 @@ function CardForm({card, submit, done, update}) {
                     type="text"
                     onChange={update}
                     value={card.front}
-                > {card.front}</textarea>
+                />
             </label>
             <label htmlFor="back">
                 Back
