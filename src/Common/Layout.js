@@ -15,7 +15,7 @@ function Layout() {
           <div className="column m-auto">
               <Switch>
                 <Route exact={true} path ="/">{/*the home screen*/}
-                  <Home/> {/*TODO: Implement styling*/}
+                  <Home/>
                 </Route> 
                 <Route path ="/decks"> {/*the decks screen*/}
                   <DecksRouter/>

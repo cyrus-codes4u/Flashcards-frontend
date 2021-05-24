@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { listDecks } from "../utils/api/index"
+import { listDecks, deleteDeck } from "../utils/api/index"
 import SingleDeckCard from "./SingleDeckCard"
 import {Link} from 'react-router-dom'
 
@@ -23,7 +23,18 @@ function Home(){
         return () => abortController.abort()
     }, [])
 
-    const list = decks.map((deck) => <SingleDeckCard key={deck.id} deck={deck}/>)
+    // handles button for deleting a deck
+    const deleteDeckHandler = async (id) => {
+        const reply = window.confirm("Are you sure you want to delete this deck?")
+        if (reply){
+            deleteDeck(id)
+            setDecks((decks) => decks.filter((deck) => deck.id !== id))
+        }
+    }
+
+    const list = decks.map((deck) => {
+        return <SingleDeckCard key={`id_${deck.id}`} deck={deck} remove={() => deleteDeckHandler(deck.id)} />
+    })
     
     return(
         <div>
@@ -34,7 +45,5 @@ function Home(){
         </div>
     )
 }
-
-
 
 export default Home

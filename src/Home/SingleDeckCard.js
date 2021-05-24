@@ -1,12 +1,9 @@
 import React, {useEffect, useState} from 'react'
-import { Link, useHistory, useRouteMatch } from "react-router-dom"
-import {deleteDeck, listCards} from '../utils/api/index'
+import { Link, useRouteMatch } from "react-router-dom"
+import { listCards} from '../utils/api/index'
 
-// TODO: Implement styling
-
-function SingleDeckCard({deck}){
+function SingleDeckCard({deck, remove}){
     const {id, name, description} = deck
-    const history = useHistory()
     const [cards, setCards] = useState([])
     const {url} = useRouteMatch()
 
@@ -23,15 +20,6 @@ function SingleDeckCard({deck}){
             abortController.abort()
         }
     }, [id])
-
-    // handles button for deleting a deck
-    const deleteDeckHandler = async () => {
-        const reply = window.confirm("Are you sure you want to delete this deck?")
-        if (reply){
-            await deleteDeck(id)
-            history.push("/")
-        }
-    }
 
     return (
         <li className="card">
@@ -53,7 +41,7 @@ function SingleDeckCard({deck}){
                         Study
                     </Link>
                 </button>
-                <button className="btn btn-danger" onClick={deleteDeckHandler}>
+                <button className="btn btn-danger" onClick={remove}>
                     <span className="oi oi-trash text-white"/>
                 </button>
             </div>

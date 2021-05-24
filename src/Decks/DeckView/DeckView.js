@@ -7,7 +7,7 @@ function DeckView({deck, deleteDeckHandle, deleteCardHandle}){
     return (
         <React.Fragment>
             <DeckCard deck={deck} deleteDeckHandle={deleteDeckHandle}/>
-            <CardList deck={deck} removeCard={deleteCardHandle} />
+            <CardList deck={deck} />
         </React.Fragment>
     )
 }

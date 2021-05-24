@@ -4,16 +4,15 @@ import DeckRouter from "./DeckRouter"
 import CreateDeck from "./EditCreate/CreateDeck"
 
 
-function Decks ({}) {
-    const { url } = useRouteMatch()
-    
+function Decks () {
+    const { url } = useRouteMatch() 
     return (
         <Switch>
-            <Route path={`${url}/:deckId`}>
-                <DeckRouter />
-            </Route>
             <Route path={`${url}/new`} >
                 <CreateDeck />
+            </Route>
+            <Route path={`${url}/:deckId`}>
+                <DeckRouter />
             </Route>
         </Switch>
     )

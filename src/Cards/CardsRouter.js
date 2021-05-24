@@ -10,7 +10,7 @@ function CardsRouter ({deck}) {
         [{name: "Home", route: "/"},{name: deck.name, route:`/decks/${deck.id}`},{name: "Add Card"}],
         [{name: "Home", route: "/"},{name: deck.name, route:`/decks/${deck.id}`},{name: "Edit Card"}],
     ]
-    
+
     return (
         <Switch>
             <Route path={`${url}/new`} >

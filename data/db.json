@@ -3,17 +3,12 @@
     {
       "id": 1,
       "name": "Rendering in React",
-      "description": "React's component structure allows for quickly building a complex web application that relies on DOM manipulation. Some edits to prove a point "
+      "description": "React's component structure allows for quickly building a complex web application that relies on DOM manipulation. "
     },
     {
       "name": "React Router",
       "description": "React Router is a collection of navigational components that compose declaratively with your application.",
       "id": 2
-    },
-    {
-      "name": "Sample Deck",
-      "description": "Sample showing the efficacy of the form. ",
-      "id": 3
     }
   ],
   "cards": [
@@ -60,10 +55,16 @@
       "id": 11
     },
     {
-      "front": "Newest Card Added ",
-      "back": "Newest Card Added",
+      "front": "Newest Card EDITED ",
+      "back": "Newest Card EDITED the back version",
       "deckId": 1,
       "id": 12
+    },
+    {
+      "front": "1738",
+      "back": "1738 pt 2 the remix",
+      "deckId": 1,
+      "id": 24
     }
   ]
 }

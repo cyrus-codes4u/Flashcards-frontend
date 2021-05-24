@@ -1,35 +1,32 @@
 import React, {useEffect, useState} from 'react'
 import {Route, Switch, useRouteMatch, useParams, useHistory} from "react-router-dom"
 import DeckView from "./DeckView/DeckView"
-import {readDeck, updateDeck, deleteDeck, listCards, deleteCard} from '../utils/api/index'
+import {readDeck, updateDeck, deleteDeck, listCards} from '../utils/api/index'
 import EditDeck from "./EditCreate/EditDeck"
 import CardsRouter from "../Cards/CardsRouter"
 import Study from "./Study/Study"
 import BreadcrumbNav from "../Common/BreadcrumbNav"
 
 
-function DeckRouter ({}) {
+function DeckRouter () {
     const { url } = useRouteMatch() //urls for following routes begin with /decks/:deckId/
-    const initialDeck = ({name: "", description: "", cards: []})
-    const [deck, setDeck] = useState({...initialDeck})
+    // const initialDeck = ({name: "", description: "", cards: []})
+    const [deck, setDeck] = useState({name: "", description: "", cards: []})
     const navigations = [
         [{name: "Home", route: "/"}, {name: deck.name}],
         [{name: "Home", route: "/"}, {name: deck.name, route: url }, {name: "Study"}],
         [{name: "Home", route: "/"},{name: deck.name, route: `/decks/${deck.id}`}, {name: "Edit Deck"}]
     ]
     const { deckId } = useParams()
-    const deckNumberId = parseInt(deckId)
     const history = useHistory()
-    
-    
 
     useEffect(() => {
-        setDeck({...initialDeck})
+        setDeck({name: "", description: "", cards: []})
         const abortController = new AbortController();
         async function loadDeck(){
             try{
-                const {id, name, description} = await readDeck(deckNumberId, abortController.signal)
-                const cardsFromAPI = await listCards(deckNumberId, abortController.signal)
+                const {id, name, description} = await readDeck(deckId, abortController.signal)
+                const cardsFromAPI = await listCards(deckId, abortController.signal)
                 setDeck({id: id, name:name, description:description, cards: cardsFromAPI})
             }catch(err){
                 if(err.name !== "AbortError"){
@@ -39,7 +36,7 @@ function DeckRouter ({}) {
         }
         loadDeck()
         return () => abortController.abort()
-    }, [deckNumberId])    
+    }, [deckId])    
 
     // handles delete deck 
     const deleteDeckHandle = async (id) =>{
@@ -52,28 +49,25 @@ function DeckRouter ({}) {
     // handles update deck 
     const editDeckHandle = async (updatedDeck) => {
         const {newName, newDescription} = await updateDeck(updatedDeck)
-        console.log("New Deck Deets", newName, newDescription, updatedDeck)
         setDeck({...deck, name:newName, description: newDescription})
+        console.log(deck)
         history.push(url)
     }
 
-    const deleteCardHandle = async (cardId) => {
-        const reply = window.confirm("Are you sure you want to delete this card?")
-        if (reply){
-            await deleteCard(cardId)
-            setDeck({...deck, cards: deck.cards.filter((card) => card.id !== cardId)} ) 
-        }
-    }
-    console.log("DeckRouter", deck, deckNumberId)
+    // handles card creation
+    // const updateCardsInDeckHandle= (newCards) =>{
+    //     setDeck({...deck, cards: newCards})
+    // }
+
     return (
         <Switch>
             <Route exact={true} path={url} >
                 <BreadcrumbNav namesRoutes={navigations[0]} />
-                <DeckView deck={deck} deleteDeckHandle={deleteDeckHandle} deleteCardHandle={deleteCardHandle} />
+                <DeckView deck={deck} deleteDeckHandle={deleteDeckHandle} />
             </Route>
             <Route path={`${url}/study`} >
                 <BreadcrumbNav namesRoutes={navigations[1]} />
-                <Study deck={deck} />
+                <Study deck={deck} cards={deck.cards} />
             </Route>
             <Route path={`${url}/edit`} >
                 <BreadcrumbNav namesRoutes={navigations[2]} />
